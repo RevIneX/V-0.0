@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: python-calculator-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app.api.endpoints:app --worker-class uvicorn.workers.UvicornWorker
+    envVars:
+      - key: APP_ENV
+        value: production
+    healthCheckPath: /health
