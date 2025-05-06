@@ -2,6 +2,10 @@ import pytest
 from app.core.calculator import calculate
 
 
+def test_calculate():
+    assert calculate(2, 3, '+') == 5
+
+
 @pytest.mark.parametrize("a,b,op,expected", [
     (6, 3, 'divmod', 2),
     (5, 3, '**', 125),
