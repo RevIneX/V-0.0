@@ -1,3 +1,7 @@
+from __future__ import annotations
+from typing import Union
+
+
 OPERATIONS = {
     'divmod': lambda x, y: divmod(x, y)[0],
     '**': int.__pow__,
@@ -10,7 +14,7 @@ OPERATIONS = {
 }
 
 
-def calculate(a: int, b: int, op: str = '+') -> int | float:
+def calculate(a: int, b: int, op: str = '+') -> Union[int, float]:
     if op in ('/', '//', '%', 'divmod') and not b:
         raise ValueError("DIVISION BY ZERO")
     return OPERATIONS.get(op, OPERATIONS['+'])(a, b)
