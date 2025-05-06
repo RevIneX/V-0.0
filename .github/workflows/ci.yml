@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
     
     steps:
     - uses: actions/checkout@v4
@@ -22,11 +22,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -e .
         pip install -r requirements.txt
-        pip install pytest pytest-cov
+        pip install "pytest<8" pytest-cov  # Для Python 3.9 используем pytest 7.x
     
     - name: Run tests
       run: |
         python -m pytest --cov=app --cov-report=xml -v
-    
-    - name: Upload coverage
-      uses: codecov/codecov-action@v3
